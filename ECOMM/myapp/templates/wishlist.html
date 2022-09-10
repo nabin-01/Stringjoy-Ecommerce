@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item active">Wishlist</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+          <center><strong>Message: </strong>{{ message }}</center>
+        </div>
+        {% endfor %}
+        {% endif %}
+        
+        <!-- Wishlist Start -->
+        <div class="wishlist-page">
+            <div class="container-fluid">
+                <div class="wishlist-page-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Add to Cart</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                        <tr>
+                                            <td>
+                                                <div class="img">
+                                                    {% for w in wish_product %}
+                                                    <a href="{{ item_detail.image.url }}"><img src="{{ w.product.image.url }}" alt="Image"></a>
+                                                    {% endfor %}
+                                                    <p>Product Name</p>
+                                                </div>
+                                            </td>
+                                            <td><button class="btn-cart">Add to Cart</button></td>
+                                            <td><button><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Wishlist End -->
+{% endblock %}
